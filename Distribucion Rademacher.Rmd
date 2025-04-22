@@ -1,0 +1,136 @@
+---
+title: "Distribución de Rademacher"
+author: |
+  Gabriel Alejandro Rodríguez Pulido, Nicol Sofía Guerra Lasso, Juan Sebastián Guayazán Clavijo  
+  Ingeniería Estadística  
+  Escuela Colombiana de Ingeniería Julio Garavito  
+  Fundamentos de Probabilidad (MATE FPRO-1)  
+  Coordinación Ingeniería Estadística  
+date: "2025-1"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+---
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = TRUE)
+```
+
+
+# **Marco Teórico**  
+
+## **Definición**  
+La **distribución de Rademacher** es una variable aleatoria discreta que toma dos valores posibles con igual probabilidad:  
+\[
+\epsilon = 
+\begin{cases} 
++1 & \text{con probabilidad } p = 0.5, \\
+-1 & \text{con probabilidad } 1-p = 0.5.
+\end{cases}
+\]  
+- **Parámetros**: No tiene parámetros ajustables (es fija con \( p = 0.5 \)).  
+
+## **Función de Masa de Probabilidad (PMF)**  
+\[
+P(\epsilon = k) = 
+\begin{cases} 
+0.5 & \text{si } k = +1 \text{ o } k = -1, \\
+0 & \text{en otro caso}.
+\end{cases}
+\]  
+**Gráfica**:  
+- Dos barras de altura \( 0.5 \) en \( k = -1 \) y \( k = +1 \).  
+
+## **Función de Distribución Acumulada (CDF)**  
+\[
+F_\epsilon(k) = 
+\begin{cases} 
+0 & \text{si } k < -1, \\
+0.5 & \text{si } -1 \leq k < 1, \\
+1 & \text{si } k \geq 1.
+\end{cases}
+\]  
+**Gráfica**: Escalonada con saltos en \( k = -1 \) y \( k = +1 \).  
+
+## **Propiedades**  
+### **Media**
+  \[
+  \mathbb{E}[\epsilon] = (+1)(0.5) + (-1)(0.5) = 0.
+  \]
+  
+  
+### **Varianza**
+  \[
+  \text{Var}(\epsilon) = \mathbb{E}[\epsilon^2] - (\mathbb{E}[\epsilon])^2 = 1 - 0 = 1.
+  \]  
+
+## **Propiedades clave** 
+- **Simetría**:  
+  - \( \epsilon \) es simétrica alrededor de 0 (\( \epsilon \) y \( -\epsilon \) tienen la misma distribución).  
+- **Función Generadora de Momentos (MGF)**:  
+  \[
+  M_\epsilon(t) = \frac{e^t + e^{-t}}{2} = \cosh(t).
+  \]  
+
+## **Ejemplo Aplicado**  
+*Problema*: Si \( \epsilon_1, \epsilon_2 \) son variables de Rademacher independientes, calcule \( P(\epsilon_1 \cdot \epsilon_2 = -1) \).  
+*Solución*:  
+\[
+P(\epsilon_1 \epsilon_2 = -1) = P(\epsilon_1 = +1 \land \epsilon_2 = -1) + P(\epsilon_1 = -1 \land \epsilon_2 = +1) = 0.25 + 0.25 = 0.5.
+\]  
+
+---
+
+# **Aplicaciones Prácticas**
+
+## **Ejemplos reales**
+- **Aprendizaje Automático**:  
+  - **Complejidad de Rademacher**: Medida de capacidad de generalización de modelos.  
+- **Teoría de Probabilidad**:  
+  - **Desigualdad de Hoeffding**: Usa Rademachers para acotar sumas de variables acotadas.  
+  - **Caminatas Aleatorias**: Sumas de variables de Rademacher modelan pasos simétricos.  
+- **Procesamiento de Señales**:  
+  - **Proyecciones Aleatorias**: Matrices con entradas de Rademacher en algoritmos de reducción de dimensionalidad.  
+
+## **Problema Resuelto**:  
+*Enunciado*: Se lanza una moneda justa 100 veces. Si "cara" = \(+1\) y "cruz" = \(-1\), calcule la probabilidad de que la suma total sea \( |S_{100}| \leq 10 \).  
+*Solución*:  
+Aproximación por TCL:  
+\[
+S_{100} \approx \mathcal{N}(0, 100), \quad P(|S_{100}| \leq 10) \approx P(-10 \leq Z \leq 10) \approx 0.6826.
+\]  
+
+---
+
+# **Simulación en R**  
+
+## **Generación de Datos**  
+```r
+# Generar 1000 variables de Rademacher
+set.seed(123)
+epsilon <- sample(c(-1, 1), 1000, replace = TRUE)
+
+# Media y varianza muestrales
+mean(epsilon)  # Debe ser cercana a 0
+var(epsilon)   # Debe ser cercana a 1
+```
+
+## **Visualización**  
+```r
+library(ggplot2)
+ggplot(data.frame(x = epsilon), aes(x)) +
+  geom_bar(width = 0.5, fill = "lightblue") +
+  scale_x_continuous(breaks = c(-1, 1)) +
+  labs(title = "Distribución de Rademacher", x = "Valores", y = "Frecuencia") +
+  theme_minimal()
+```
+
+## **Comparación Teoría vs. Simulación**  
+| **Estadístico** | **Teórico** | **Simulado** |  
+|-----------------|-------------|--------------|  
+| Media          | \( 0 \)     | `mean(epsilon)` ≈ -0.02 |  
+| Varianza       | \( 1 \)     | `var(epsilon)` ≈ 0.98   |  
