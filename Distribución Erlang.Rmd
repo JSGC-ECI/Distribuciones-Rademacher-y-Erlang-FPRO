@@ -1,0 +1,117 @@
+---
+title: "Distribución de Rademacher"
+author: |
+  Gabriel Alejandro Rodríguez Pulido, Nicol Sofía Guerra Lasso, Juan Sebastián Guayazán Clavijo  
+  Ingeniería Estadística  
+  Escuela Colombiana de Ingeniería Julio Garavito  
+  Fundamentos de Probabilidad (MATE FPRO-1)  
+  Coordinación Ingeniería Estadística  
+date: "2025-1"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = TRUE)
+```
+
+# **Marco Teórico**  
+
+## **Definición**  
+La distribución **Erlang** es un caso especial de la distribución **Gamma** donde el parámetro de forma \( k \) es un número entero positivo. Modela el tiempo de espera hasta el \( k \)-ésimo evento en un **proceso de Poisson** con tasa \( \lambda \).  
+
+**Parámetros**:  
+- \( k \) (entero positivo): Número de eventos.  
+- \( \lambda \) (real positivo): Tasa de ocurrencia (eventos por unidad de tiempo).  
+
+## **Función de Densidad de Probabilidad (PDF)**  
+\[
+f(x; k, \lambda) = \frac{\lambda^k x^{k-1} e^{-\lambda x}}{(k-1)!} \quad \text{para } x \geq 0.
+\]  
+- **Gráfica**:  
+  - Asimétrica positiva (sesgo a la derecha).  
+  - Moda en \( x = \frac{k-1}{\lambda} \) (si \( k \geq 1 \)).  
+
+## **Función de Distribución Acumulada (CDF)**  
+\[
+F(x; k, \lambda) = 1 - \sum_{n=0}^{k-1} \frac{(\lambda x)^n e^{-\lambda x}}{n!}.
+\]  
+- **Gráfica**:  
+  - Crece de 0 a 1 de forma monótona.  
+  - Ejemplo para \( k = 3 \), \( \lambda = 2 \):  
+    ```r
+    curve(pgamma(x, shape=3, rate=2), xlim=c(0, 5), main="CDF Erlang (k=3, λ=2)")
+    ```  
+
+## **Propiedades**
+- **Media (Valor Esperado)**:  
+  \[
+  \mathbb{E}[X] = \frac{k}{\lambda}.
+  \]  
+- **Varianza**:  
+  \[
+  \text{Var}(X) = \frac{k}{\lambda^2}.
+  \]
+
+## **Propiedades Clave**
+- **Relación con otras distribuciones**:  
+  - Si \( k = 1 \), Erlang se reduce a una **exponencial** con parámetro \( \lambda \).  
+  - Suma de \( k \) exponenciales i.i.d. \( \sim \text{Erlang}(k, \lambda) \).  
+
+## **Ejemplo Aplicado**  
+*Problema*: En un centro de llamadas, las llamadas llegan a una tasa de \( \lambda = 0.5 \) por minuto. ¿Cuál es la probabilidad de que la 4ª llamada ocurra antes de 10 minutos?  
+*Solución*:  
+\[
+P(X \leq 10) = F(10; 4, 0.5) = 1 - e^{-5} \left(1 + 5 + \frac{5^2}{2} + \frac{5^3}{6}\right) \approx 0.735.
+\]  
+
+---
+
+# **Aplicaciones Prácticas**  
+## **Ejemplos reales**
+- **Telecomunicaciones**: Tiempo entre llegadas de paquetes en redes.  
+- **Fiabilidad**: Tiempo hasta fallo de sistemas con \( k \) componentes redundantes.  
+- **Colas (Queueing Theory)**: Modelado de tiempos de servicio en sistemas M/M/c.  
+
+## **Problema Resuelto**  
+*Enunciado*: Un servidor procesa solicitudes a tasa \( \lambda = 2 \) por hora. Calcule la probabilidad de que la 3ª solicitud tarde más de 1.5 horas.  
+*Solución*:  
+\[
+P(X > 1.5) = 1 - F(1.5; 3, 2) = e^{-3} \left(1 + 3 + \frac{3^2}{2}\right) \approx 0.423.
+\]  
+
+---
+
+# **Simulación en R**  
+
+## **Generación de Datos**  
+```r
+# Simular 1000 observaciones de Erlang(k=3, λ=2)
+set.seed(123)
+erlang_data <- rgamma(n = 1000, shape = 3, rate = 2)
+
+# Media y varianza muestrales
+mean(erlang_data)   # Teórico: 3/2 = 1.5
+var(erlang_data)    # Teórico: 3/4 = 0.75
+```
+
+## **Visualización**  
+```r
+library(ggplot2)
+ggplot(data.frame(x = erlang_data), aes(x)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "lightblue", alpha = 0.7) +
+  stat_function(fun = dgamma, args = list(shape = 3, rate = 2), color = "red", linewidth = 1) +
+  labs(title = "Distribución Erlang (k=3, λ=2)", x = "Tiempo", y = "Densidad") +
+  theme_minimal()
+```
+
+## **Comparación Teoría vs. Simulación**  
+| **Estadístico** | **Teórico** | **Simulado** |  
+|-----------------|-------------|--------------|  
+| Media          | \( 1.5 \)   | `mean(erlang_data)` ≈ 1.49 |  
+| Varianza       | \( 0.75 \)  | `var(erlang_data)` ≈ 0.74 |  
+
+---
