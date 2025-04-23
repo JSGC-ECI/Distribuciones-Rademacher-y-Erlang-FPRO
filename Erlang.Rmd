@@ -1,21 +1,13 @@
 ---
 title: "Distribución Erlang"
-author: |
-  Gabriel Alejandro Rodríguez Pulido, Nicol Sofía Guerra Lasso, Juan Sebastián Guayazán Clavijo  
-  Ingeniería Estadística  
-  Escuela Colombiana de Ingeniería Julio Garavito  
-  Fundamentos de Probabilidad (MATE FPRO-1)  
-  Coordinación Ingeniería Estadística  
-date: "2025-1"
-output:
-  html_document:
-    toc: true
-    toc_depth: 3
-    toc_float: true
+author: GABRIEL ALEJANDRO RODRIGUEZ PULIDO, NICOL SOFIA GUERRA LASSO y JUAN SEBASTIÁN
+  GUAYAZÁN CLAVIJO
+date: "2025-04-22"
+output: ioslides_presentation
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
 # **Marco Teórico**  
@@ -65,8 +57,10 @@ F(x; k, \lambda) = 1 - \sum_{n=0}^{k-1} \frac{(\lambda x)^n e^{-\lambda x}}{n!}.
 *Problema*: En un centro de llamadas, las llamadas llegan a una tasa de \( \lambda = 0.5 \) por minuto. ¿Cuál es la probabilidad de que la 4ª llamada ocurra antes de 10 minutos?  
 *Solución*:  
 \[
-P(X \leq 10) = F(10; 4, 0.5) = 1 - e^{-5} \left(1 + 5 + \frac{5^2}{2} + \frac{5^3}{6}\right) \approx 0.735.
-\]  
+P(X \leq 10) = F(10; 4, 0.5) = 1 - e^{-5} \left(1 + 5 + \frac{5^2}{2} + \frac{5^3}{6}\right) \\
+\approx 0.735
+\]
+
 
 ---
 
