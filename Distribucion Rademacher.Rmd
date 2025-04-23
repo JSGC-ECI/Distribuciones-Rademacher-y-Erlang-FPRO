@@ -1,17 +1,11 @@
 ---
-title: "Distribución de Rademacher"
-author: |
-  Gabriel Alejandro Rodríguez Pulido, Nicol Sofía Guerra Lasso, Juan Sebastián Guayazán Clavijo  
-  Ingeniería Estadística  
-  Escuela Colombiana de Ingeniería Julio Garavito  
-  Fundamentos de Probabilidad (MATE FPRO-1)  
-  Coordinación Ingeniería Estadística  
-date: "2025-1"
-output:
-  html_document:
-    toc: true
-    toc_depth: 3
-    toc_float: true
+title: "Rademacher"
+author: GABRIEL ALEJANDRO RODRIGUEZ PULIDO, NICOL SOFIA GUERRA LASSO y JUAN SEBASTIÁN
+  GUAYAZÁN CLAVIJO
+date: "`r Sys.Date()`"
+output: ioslides_presentation
+---
+
 ---
 
 ```{r setup, include=FALSE}

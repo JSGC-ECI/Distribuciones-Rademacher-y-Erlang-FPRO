@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Rademacher</title>
+  <title>Distribución de Rademacher</title>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -20,7 +20,7 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'Rademacher',
+                title: '<strong>Distribución de Rademacher</strong>',
                         useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -30,7 +30,23 @@
       // Author information
       presenters: [
             {
-        name:  'GABRIEL ALEJANDRO RODRIGUEZ PULIDO, NICOL SOFIA GUERRA LASSO y JUAN SEBASTIÁN GUAYAZÁN CLAVIJO' ,
+        name:  'GABRIEL ALEJANDRO RODRIGUEZ PULIDO' ,
+        company: '',
+        gplus: '',
+        twitter: '',
+        www: '',
+        github: ''
+      },
+            {
+        name:  'NICOL SOFIA GUERRA LASSO' ,
+        company: '',
+        gplus: '',
+        twitter: '',
+        www: '',
+        github: ''
+      },
+            {
+        name:  'JUAN SEBASTIÁN GUAYAZÁN CLAVIJO' ,
         company: '',
         gplus: '',
         twitter: '',
@@ -3207,31 +3223,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
           </hgroup>
   </slide>
 
-<slide class=""><hgroup><h2></h2></hgroup><article >
+<slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>🧠 <strong>Marco Teórico</strong></h2></hgroup><article  id="marco-teórico">
 
-</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2><strong>Marco Teórico</strong></h2></hgroup><article  id="marco-teórico">
+</article></slide><slide class=""><hgroup><h2>🎯 Definición</h2></hgroup><article  id="definición">
 
-</article></slide><slide class=""><hgroup><h2><strong>Definición</strong></h2></hgroup><article  id="definición">
+<p>La <strong>distribución de Rademacher</strong> es una variable aleatoria discreta con valores:</p>
 
-<p>La <strong>distribución de Rademacher</strong> es una variable aleatoria discreta que toma dos valores posibles con igual probabilidad:<br/>\[
+<p>\[
 \epsilon = 
 \begin{cases} 
-+1 &amp; \text{con probabilidad } p = 0.5, \\
--1 &amp; \text{con probabilidad } 1-p = 0.5.
++1 &amp; \text{con probabilidad } 0.5, \\
+-1 &amp; \text{con probabilidad } 0.5.
 \end{cases}
-\]<br/>- <strong>Parámetros</strong>: No tiene parámetros ajustables (es fija con \(p = 0.5\)).</p>
+\]</p>
 
-</article></slide><slide class=""><hgroup><h2><strong>Función de Masa de Probabilidad (PMF)</strong></h2></hgroup><article  id="función-de-masa-de-probabilidad-pmf">
+<ul>
+<li><strong>Parámetros</strong>: distribución fija, no tiene parámetros ajustables.</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>🔢 Función de Masa de Probabilidad (PMF)</h2></hgroup><article  id="función-de-masa-de-probabilidad-pmf">
 
 <p>\[
 P(\epsilon = k) = 
 \begin{cases} 
-0.5 &amp; \text{si } k = +1 \text{ o } k = -1, \\
+0.5 &amp; \text{si } k = \pm 1, \\
 0 &amp; \text{en otro caso}.
 \end{cases}
-\]<br/><strong>Gráfica</strong>:<br/>- Dos barras de altura \(0.5\) en \(k = -1\) y \(k = +1\).</p>
+\]</p>
 
-</article></slide><slide class=""><hgroup><h2><strong>Función de Distribución Acumulada (CDF)</strong></h2></hgroup><article  id="función-de-distribución-acumulada-cdf">
+<ul>
+<li><strong>Visualización</strong>: Dos barras en -1 y +1 con altura 0.5.</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>📈 Función de Distribución Acumulada (CDF)</h2></hgroup><article  id="función-de-distribución-acumulada-cdf">
 
 <p>\[
 F_\epsilon(k) = 
@@ -3240,96 +3264,96 @@ F_\epsilon(k) =
 0.5 &amp; \text{si } -1 \leq k &lt; 1, \\
 1 &amp; \text{si } k \geq 1.
 \end{cases}
-\]<br/><strong>Gráfica</strong>: Escalonada con saltos en \(k = -1\) y \(k = +1\).</p>
-
-</article></slide><slide class=""><hgroup><h2><strong>Propiedades</strong></h2></hgroup><article  id="propiedades">
-
-<h3><strong>Media</strong></h3>
-
-<p>\[
-  \mathbb{E}[\epsilon] = (+1)(0.5) + (-1)(0.5) = 0.
-  \]</p>
-
-<h3><strong>Varianza</strong></h3>
-
-<p>\[
-  \text{Var}(\epsilon) = \mathbb{E}[\epsilon^2] - (\mathbb{E}[\epsilon])^2 = 1 - 0 = 1.
-  \]</p>
-
-</article></slide><slide class=""><hgroup><h2><strong>Propiedades clave</strong></h2></hgroup><article  id="propiedades-clave">
+\]</p>
 
 <ul>
-<li><strong>Simetría</strong>:
-
-<ul>
-<li>\(\epsilon\) es simétrica alrededor de 0 (\(\epsilon\) y \(-\epsilon\) tienen la misma distribución).<br/></li>
-</ul></li>
-<li><strong>Función Generadora de Momentos (MGF)</strong>:<br/>\[
-M_\epsilon(t) = \frac{e^t + e^{-t}}{2} = \cosh(t).
-\]</li>
+<li>Salto de 0.5 en cada punto.</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2><strong>Ejemplo Aplicado</strong></h2></hgroup><article  id="ejemplo-aplicado">
+</article></slide><slide class=""><hgroup><h2>⚙️ Propiedades</h2></hgroup><article  id="propiedades">
 
-<p><em>Problema</em>: Si \(\epsilon_1, \epsilon_2\) son variables de Rademacher independientes, calcule \(P(\epsilon_1 \cdot \epsilon_2 = -1)\).<br/><em>Solución</em>:<br/>\[
-P(\epsilon_1 \epsilon_2 = -1) = P(\epsilon_1 = +1 \land \epsilon_2 = -1) + P(\epsilon_1 = -1 \land \epsilon_2 = +1) = 0.25 + 0.25 = 0.5.
+<h3>🔹 Media</h3>
+
+<p>\[
+\mathbb{E}[\epsilon] = (+1)(0.5) + (-1)(0.5) = 0
+\]</p>
+
+<h3>🔹 Varianza</h3>
+
+<p>\[
+\text{Var}(\epsilon) = \mathbb{E}[\epsilon^2] - (\mathbb{E}[\epsilon])^2 = 1 - 0 = 1
 \]</p>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
-</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2><strong>Aplicaciones Prácticas</strong></h2></hgroup><article  id="aplicaciones-prácticas">
-
-</article></slide><slide class=""><hgroup><h2><strong>Ejemplos reales</strong></h2></hgroup><article  id="ejemplos-reales">
+<h3>✨ Propiedades clave</h3>
 
 <ul>
-<li><strong>Aprendizaje Automático</strong>:
-
-<ul>
-<li><strong>Complejidad de Rademacher</strong>: Medida de capacidad de generalización de modelos.<br/></li>
-</ul></li>
-<li><strong>Teoría de Probabilidad</strong>:
-
-<ul>
-<li><strong>Desigualdad de Hoeffding</strong>: Usa Rademachers para acotar sumas de variables acotadas.<br/></li>
-<li><strong>Caminatas Aleatorias</strong>: Sumas de variables de Rademacher modelan pasos simétricos.<br/></li>
-</ul></li>
-<li><strong>Procesamiento de Señales</strong>:
-
-<ul>
-<li><strong>Proyecciones Aleatorias</strong>: Matrices con entradas de Rademacher en algoritmos de reducción de dimensionalidad.</li>
-</ul></li>
+<li><strong>Simetría</strong>: \(\epsilon\) es simétrica respecto a 0.<br/></li>
+<li><strong>MGF</strong> (Moment Generating Function):</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2><strong>Problema Resuelto</strong>:</h2></hgroup><article  id="problema-resuelto">
-
-<p><em>Enunciado</em>: Se lanza una moneda justa 100 veces. Si &ldquo;cara&rdquo; = \(+1\) y &ldquo;cruz&rdquo; = \(-1\), calcule la probabilidad de que la suma total sea \(|S_{100}| \leq 10\).<br/><em>Solución</em>:<br/>Aproximación por TCL:<br/>\[
-S_{100} \approx \mathcal{N}(0, 100), \quad P(|S_{100}| \leq 10) \approx P(-10 \leq Z \leq 10) \approx 0.6826.
+<p>\[
+M_\epsilon(t) = \frac{e^t + e^{-t}}{2} = \cosh(t)
 \]</p>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>🧩 <strong>Ejemplo Aplicado</strong></h2></hgroup><article  id="ejemplo-aplicado">
 
-</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2><strong>Simulación en R</strong></h2></hgroup><article  id="simulación-en-r">
+<p><strong>Problema</strong>: Si \(\epsilon_1, \epsilon_2\) ~ Rademacher independientes, ¿cuál es la probabilidad de que el producto sea -1?</p>
 
-</article></slide><slide class=""><hgroup><h2><strong>Generación de Datos</strong></h2></hgroup><article  id="generación-de-datos">
+<p>\[
+P(\epsilon_1 \cdot \epsilon_2 = -1) = 0.25 + 0.25 = 0.5
+\]</p>
 
-<pre class = 'prettyprint lang-r'># Generar 1000 variables de Rademacher
-set.seed(123)
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>🛠️ <strong>Aplicaciones Prácticas</strong></h2></hgroup><article  id="aplicaciones-prácticas">
+
+<ul>
+<li><strong>Aprendizaje Automático</strong>: Complejidad de Rademacher en VC-dimension.<br/></li>
+<li><strong>Teoría de Probabilidad</strong>: Desigualdad de Hoeffding.<br/></li>
+<li><strong>Caminatas Aleatorias</strong>: Sumas de variables Rademacher.<br/></li>
+<li><strong>Procesamiento de Señales</strong>: Proyecciones aleatorias en compresión de datos.</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>📊 Problema tipo examen</h2></hgroup><article  id="problema-tipo-examen">
+
+<p><strong>Enunciado</strong>: Se lanza una moneda 100 veces, donde<br/>- Cara = \(+1\)<br/>- Cruz = \(-1\)<br/>Sea \(S_{100} = \sum \epsilon_i\). Estimar:</p>
+
+<p>\[
+P(|S_{100}| \leq 10)
+\]</p>
+
+<p><strong>Solución</strong>: Aproximación por el Teorema Central del Límite:</p>
+
+<p>\[
+S_{100} \sim \mathcal{N}(0, 100) \Rightarrow P(-10 \leq Z \leq 10) \approx 0.6826
+\]</p>
+
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>💻 <strong>Simulación en R</strong></h2></hgroup><article  id="simulación-en-r">
+
+</article></slide><slide class=""><hgroup><h2>🔢 Generación de datos</h2></hgroup><article  id="generación-de-datos">
+
+<pre class = 'prettyprint lang-r'>set.seed(123)
 epsilon &lt;- sample(c(-1, 1), 1000, replace = TRUE)
+mean(epsilon)  # ≈ 0</pre>
 
-# Media y varianza muestrales
-mean(epsilon)  # Debe ser cercana a 0
-var(epsilon)   # Debe ser cercana a 1</pre>
+<pre >## [1] -0.012</pre>
 
-</article></slide><slide class=""><hgroup><h2><strong>Visualización</strong></h2></hgroup><article  id="visualización">
+<pre class = 'prettyprint lang-r'>var(epsilon)   # ≈ 1</pre>
+
+<pre >## [1] 1.000857</pre>
+
+</article></slide><slide class=""><hgroup><h2>📊 Visualización de la distribución</h2></hgroup><article  id="visualización-de-la-distribución">
 
 <pre class = 'prettyprint lang-r'>library(ggplot2)
 ggplot(data.frame(x = epsilon), aes(x)) +
-  geom_bar(width = 0.5, fill = &quot;lightblue&quot;) +
+  geom_bar(width = 0.5, fill = &quot;skyblue&quot;) +
   scale_x_continuous(breaks = c(-1, 1)) +
   labs(title = &quot;Distribución de Rademacher&quot;, x = &quot;Valores&quot;, y = &quot;Frecuencia&quot;) +
   theme_minimal()</pre>
 
-</article></slide><slide class=""><hgroup><h2><strong>Comparación Teoría vs. Simulación</strong></h2></hgroup><article  id="comparación-teoría-vs.-simulación">
+<p><img src="data:image/png;base64,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" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2>📋 Comparación Teoría vs. Simulación</h2></hgroup><article  id="comparación-teoría-vs.-simulación">
 
 <table class = 'rmdtable'>
 <tr class="header">
@@ -3340,14 +3364,23 @@ ggplot(data.frame(x = epsilon), aes(x)) +
 <tr class="odd">
 <td align="left">Media</td>
 <td align="left">\(0\)</td>
-<td align="left"><code>mean(epsilon)</code> ≈ -0.02</td>
+<td align="left"><code>mean(epsilon)</code></td>
 </tr>
 <tr class="even">
 <td align="left">Varianza</td>
 <td align="left">\(1\)</td>
-<td align="left"><code>var(epsilon)</code> ≈ 0.98</td>
+<td align="left"><code>var(epsilon)</code></td>
 </tr>
-</table></article></slide>
+</table>
+
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>🙌 <strong>¡Muchas Gracias!</strong></h2></hgroup><article  id="muchas-gracias">
+
+<p><strong>Ingeniería Estadística</strong><br/><strong>Escuela Colombiana de Ingeniería Julio Garavito</strong><br/><strong>Fundamentos de Probabilidad (MATE FPRO-1)</strong></p>
+
+<p><br><br></p>
+
+<div style="text-align: center; font-size: 130%; font-style: italic;">
+<p>&ldquo;La estadística es la gramática de la ciencia.&rdquo;</p></div></article></slide>
 
 
   <slide class="backdrop"></slide>

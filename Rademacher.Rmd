@@ -1,0 +1,164 @@
+
+---
+title: "**Distribución de Rademacher**"
+author: 
+  - GABRIEL ALEJANDRO RODRIGUEZ PULIDO  
+  - NICOL SOFIA GUERRA LASSO  
+  - JUAN SEBASTIÁN GUAYAZÁN CLAVIJO
+date: "`r Sys.Date()`"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = TRUE)
+```
+
+# 🧠 **Marco Teórico**
+
+## 🎯 Definición
+
+La **distribución de Rademacher** es una variable aleatoria discreta con valores:
+
+\[
+\epsilon = 
+\begin{cases} 
++1 & \text{con probabilidad } 0.5, \\
+-1 & \text{con probabilidad } 0.5.
+\end{cases}
+\]
+
+- **Parámetros**: distribución fija, no tiene parámetros ajustables.
+
+
+## 🔢 Función de Masa de Probabilidad (PMF)
+
+\[
+P(\epsilon = k) = 
+\begin{cases} 
+0.5 & \text{si } k = \pm 1, \\
+0 & \text{en otro caso}.
+\end{cases}
+\]
+
+- **Visualización**: Dos barras en -1 y +1 con altura 0.5.
+
+
+## 📈 Función de Distribución Acumulada (CDF)
+
+\[
+F_\epsilon(k) = 
+\begin{cases} 
+0 & \text{si } k < -1, \\
+0.5 & \text{si } -1 \leq k < 1, \\
+1 & \text{si } k \geq 1.
+\end{cases}
+\]
+
+- Salto de 0.5 en cada punto.
+
+
+## ⚙️ Propiedades
+
+### 🔹 Media
+
+\[
+\mathbb{E}[\epsilon] = (+1)(0.5) + (-1)(0.5) = 0
+\]
+
+### 🔹 Varianza
+
+\[
+\text{Var}(\epsilon) = \mathbb{E}[\epsilon^2] - (\mathbb{E}[\epsilon])^2 = 1 - 0 = 1
+\]
+
+---
+
+### ✨ Propiedades clave
+
+- **Simetría**: \(\epsilon\) es simétrica respecto a 0.  
+- **MGF** (Moment Generating Function):
+
+\[
+M_\epsilon(t) = \frac{e^t + e^{-t}}{2} = \cosh(t)
+\]
+
+
+# 🧩 **Ejemplo Aplicado**
+
+**Problema**: Si \(\epsilon_1, \epsilon_2\) ~ Rademacher independientes, ¿cuál es la probabilidad de que el producto sea -1?
+
+\[
+P(\epsilon_1 \cdot \epsilon_2 = -1) = 0.25 + 0.25 = 0.5
+\]
+
+
+# 🛠️ **Aplicaciones Prácticas**
+
+- **Aprendizaje Automático**: Complejidad de Rademacher en VC-dimension.  
+- **Teoría de Probabilidad**: Desigualdad de Hoeffding.  
+- **Caminatas Aleatorias**: Sumas de variables Rademacher.  
+- **Procesamiento de Señales**: Proyecciones aleatorias en compresión de datos.
+
+
+## 📊 Problema tipo examen
+
+**Enunciado**: Se lanza una moneda 100 veces, donde  
+- Cara = \(+1\)  
+- Cruz = \(-1\)  
+Sea \( S_{100} = \sum \epsilon_i \). Estimar:
+
+\[
+P(|S_{100}| \leq 10)
+\]
+
+**Solución**: Aproximación por el Teorema Central del Límite:
+
+\[
+S_{100} \sim \mathcal{N}(0, 100) \Rightarrow P(-10 \leq Z \leq 10) \approx 0.6826
+\]
+
+
+# 💻 **Simulación en R**
+
+## 🔢 Generación de datos
+
+```{r}
+set.seed(123)
+epsilon <- sample(c(-1, 1), 1000, replace = TRUE)
+mean(epsilon)  # ≈ 0
+var(epsilon)   # ≈ 1
+```
+
+
+## 📊 Visualización de la distribución
+
+```{r}
+library(ggplot2)
+ggplot(data.frame(x = epsilon), aes(x)) +
+  geom_bar(width = 0.5, fill = "skyblue") +
+  scale_x_continuous(breaks = c(-1, 1)) +
+  labs(title = "Distribución de Rademacher", x = "Valores", y = "Frecuencia") +
+  theme_minimal()
+```
+
+
+## 📋 Comparación Teoría vs. Simulación
+
+| **Estadístico** | **Teórico** | **Simulado** |
+|-----------------|-------------|--------------|
+| Media           | \(0\)       | `mean(epsilon)` |
+| Varianza        | \(1\)       | `var(epsilon)`  |
+
+
+
+# 🙌 **¡Muchas Gracias!**
+
+**Ingeniería Estadística**  
+**Escuela Colombiana de Ingeniería Julio Garavito**  
+**Fundamentos de Probabilidad (MATE FPRO-1)**  
+
+<br><br>
+
+<div style="text-align: center; font-size: 130%; font-style: italic;">
+  “La estadística es la gramática de la ciencia.”  
+</div>
