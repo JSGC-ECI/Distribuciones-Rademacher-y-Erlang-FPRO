@@ -1,8 +1,10 @@
 # Proyecto de Aula: Distribuciones de Probabilidad
 
-- GABRIEL ALEJANDRO RODRIGUEZ PULIDO
-- NICOL SOFIA GUERRA LASSO
-- JUAN SEBASTIÁN GUAYAZÁN CLAVIJO
+Este repositorio contiene los siguientes archivos:
+
+- [GABRIEL ALEJANDRO RODRIGUEZ PULIDO](gabriel.rodriguez-p@mail.escuelaing.edu.co)
+- [NICOL SOFIA GUERRA LASSO](nicol.guerra@mail.escuelaing.edu.co)
+- [JUAN SEBASTIÁN GUAYAZÁN CLAVIJO](juan.guayazan-c@mail.escuelaing.edu.co)
 
 Fundamentos de probabilidad (MATE FPRO-1)     
 Coordinación Ingeniería Estadística     
