@@ -67,12 +67,72 @@ F_\epsilon(k) =
   \]  
 
 ## **Propiedades clave** 
-- **Simetría**:  
-  - \( \epsilon \) es simétrica alrededor de 0 (\( \epsilon \) y \( -\epsilon \) tienen la misma distribución).  
+- **Fórmula del coeficiente de asimetría (skewness)**
+
+\gamma_1 = \frac{\mathbb{E}[(X - \mu)^3]}{\sigma^3}
+
+Donde:
+	•	\mu = \mathbb{E}[X] es la media.
+	•	\sigma = \sqrt{\text{Var}(X)} es la desviación estándar.
+	•	\mathbb{E}[(X - \mu)^3] es el tercer momento central.
 - **Función Generadora de Momentos (MGF)**:  
   \[
   M_\epsilon(t) = \frac{e^t + e^{-t}}{2} = \cosh(t).
   \]  
+  
+
+---
+
+# 🔗 Relaciones con otras distribuciones
+
+## *Distribución Bernoulli*
+
+- Si \( B \sim \text{Bernoulli}(0.5) \), entonces puedes obtener una variable Rademacher así:
+  \[
+  X = 2B - 1
+  \]
+- Ejemplo:
+  - Si \( B = 1 \Rightarrow X = +1 \)
+  - Si \( B = 0 \Rightarrow X = -1 \)
+
+✅ *Conclusión:* Rademacher es como una Bernoulli recodificada.
+
+---
+
+##*Distribución Binomial (en sumas)*
+
+- Si tomas la *suma de muchas variables Rademacher independientes, obtienes una distribución parecida a una **binomial centrada* o incluso una *normal* si el número es grande.
+
+Esto se relaciona con el *Teorema Central del Límite*:
+\[
+\frac{1}{\sqrt{n}} \sum_{i=1}^{n} X_i \rightarrow \mathcal{N}(0, 1)
+\]
+donde \( X_i \sim \text{Rademacher} \)
+
+*Conclusión:* La suma de muchas Rademacher se aproxima a una normal.
+
+
+##*Distribución Laplace (como combinación de Rademacher y Exponencial)*
+
+Esta es más técnica pero muy interesante:
+
+- Si \( E \sim \text{Exponencial}(\lambda) \) y \( R \sim \text{Rademacher} \), entonces:
+  \[
+  X = R \cdot E
+  \]
+  sigue una *distribución de Laplace* (también llamada doble exponencial).
+
+*Conclusión:* La distribución Laplace puede generarse como una *exponencial con signo aleatorio*.
+
+---
+
+## ¿Por qué es útil conocer estas relaciones?
+
+- Ayuda a *entender simulaciones complejas* (como permutaciones y tests no paramétricos).
+- Es útil para métodos computacionales como *machine learning, regularización, y análisis aleatorio*.
+- Permite generar otras distribuciones a partir de *una fuente muy simple de aleatoriedad*: solo +1 y -1.
+
+---
 
 ## **Ejemplo Aplicado**  
 *Problema*: Si \( \epsilon_1, \epsilon_2 \) son variables de Rademacher independientes, calcule \( P(\epsilon_1 \cdot \epsilon_2 = -1) \).  

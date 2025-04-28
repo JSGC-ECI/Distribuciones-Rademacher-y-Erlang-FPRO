@@ -11,7 +11,7 @@
 
 
 
-<title>Distribución Erlang</title>
+<title>Distribución de Rademacher</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1477,7 +1477,7 @@ border-radius: 0px;
 
 
 
-<h1 class="title toc-ignore">Distribución Erlang</h1>
+<h1 class="title toc-ignore">Distribución de Rademacher</h1>
 <h4 class="author"><p>Gabriel Alejandro Rodríguez Pulido, Nicol Sofía
 Guerra Lasso, Juan Sebastián Guayazán Clavijo<br />
 Ingeniería Estadística<br />
@@ -1493,76 +1493,147 @@ Coordinación Ingeniería Estadística</p></h4>
 <h1><strong>Marco Teórico</strong></h1>
 <div id="definición" class="section level2">
 <h2><strong>Definición</strong></h2>
-<p>La distribución <strong>Erlang</strong> es un caso especial de la
-distribución <strong>Gamma</strong> donde el parámetro de forma <span class="math inline">\(k\)</span> es un número entero positivo. Modela el
-tiempo de espera hasta el <span class="math inline">\(k\)</span>-ésimo
-evento en un <strong>proceso de Poisson</strong> con tasa <span class="math inline">\(\lambda\)</span>.</p>
-<p><strong>Parámetros</strong>:<br />
-- <span class="math inline">\(k\)</span> (entero positivo): Número de
-eventos.<br />
-- <span class="math inline">\(\lambda\)</span> (real positivo): Tasa de
-ocurrencia (eventos por unidad de tiempo).</p>
-</div>
-<div id="función-de-densidad-de-probabilidad-pdf" class="section level2">
-<h2><strong>Función de Densidad de Probabilidad (PDF)</strong></h2>
-<p><span class="math display">\[
-f(x; k, \lambda) = \frac{\lambda^k x^{k-1} e^{-\lambda x}}{(k-1)!} \quad
-\text{para } x \geq 0.
+<p>La <strong>distribución de Rademacher</strong> es una variable
+aleatoria discreta que toma dos valores posibles con igual
+probabilidad:<br />
+<span class="math display">\[
+\epsilon =
+\begin{cases}
++1 &amp; \text{con probabilidad } p = 0.5, \\
+-1 &amp; \text{con probabilidad } 1-p = 0.5.
+\end{cases}
 \]</span><br />
-- <strong>Gráfica</strong>:<br />
-- Asimétrica positiva (sesgo a la derecha).<br />
-- Moda en <span class="math inline">\(x = \frac{k-1}{\lambda}\)</span>
-(si <span class="math inline">\(k \geq 1\)</span>).</p>
+- <strong>Parámetros</strong>: No tiene parámetros ajustables (es fija
+con <span class="math inline">\(p = 0.5\)</span>).</p>
+</div>
+<div id="función-de-masa-de-probabilidad-pmf" class="section level2">
+<h2><strong>Función de Masa de Probabilidad (PMF)</strong></h2>
+<p><span class="math display">\[
+P(\epsilon = k) =
+\begin{cases}
+0.5 &amp; \text{si } k = +1 \text{ o } k = -1, \\
+0 &amp; \text{en otro caso}.
+\end{cases}
+\]</span><br />
+<strong>Gráfica</strong>:<br />
+- Dos barras de altura <span class="math inline">\(0.5\)</span> en <span class="math inline">\(k = -1\)</span> y <span class="math inline">\(k =
++1\)</span>.</p>
 </div>
 <div id="función-de-distribución-acumulada-cdf" class="section level2">
 <h2><strong>Función de Distribución Acumulada (CDF)</strong></h2>
 <p><span class="math display">\[
-F(x; k, \lambda) = 1 - \sum_{n=0}^{k-1} \frac{(\lambda x)^n e^{-\lambda
-x}}{n!}.
+F_\epsilon(k) =
+\begin{cases}
+0 &amp; \text{si } k &lt; -1, \\
+0.5 &amp; \text{si } -1 \leq k &lt; 1, \\
+1 &amp; \text{si } k \geq 1.
+\end{cases}
 \]</span><br />
-- <strong>Gráfica</strong>:<br />
-- Crece de 0 a 1 de forma monótona.<br />
-- Ejemplo para <span class="math inline">\(k = 3\)</span>, <span class="math inline">\(\lambda = 2\)</span>:<br />
-<code>r     curve(pgamma(x, shape=3, rate=2), xlim=c(0, 5), main=&quot;CDF Erlang (k=3, λ=2)&quot;)</code></p>
+<strong>Gráfica</strong>: Escalonada con saltos en <span class="math inline">\(k = -1\)</span> y <span class="math inline">\(k =
++1\)</span>.</p>
 </div>
 <div id="propiedades" class="section level2">
 <h2><strong>Propiedades</strong></h2>
-<ul>
-<li><strong>Media (Valor Esperado)</strong>:<br />
-<span class="math display">\[
-\mathbb{E}[X] = \frac{k}{\lambda}.
-\]</span><br />
-</li>
-<li><strong>Varianza</strong>:<br />
-<span class="math display">\[
-\text{Var}(X) = \frac{k}{\lambda^2}.
-\]</span></li>
-</ul>
+<div id="media" class="section level3">
+<h3><strong>Media</strong></h3>
+<p><span class="math display">\[
+  \mathbb{E}[\epsilon] = (+1)(0.5) + (-1)(0.5) = 0.
+  \]</span></p>
+</div>
+<div id="varianza" class="section level3">
+<h3><strong>Varianza</strong></h3>
+<p><span class="math display">\[
+  \text{Var}(\epsilon) = \mathbb{E}[\epsilon^2] -
+(\mathbb{E}[\epsilon])^2 = 1 - 0 = 1.
+  \]</span></p>
+</div>
 </div>
 <div id="propiedades-clave" class="section level2">
-<h2><strong>Propiedades Clave</strong></h2>
+<h2><strong>Propiedades clave</strong></h2>
 <ul>
-<li><strong>Relación con otras distribuciones</strong>:
+<li><strong>Fórmula del coeficiente de asimetría
+(skewness)</strong></li>
+</ul>
+<p>_1 = </p>
+<p>Donde: • = [X] es la media. • = es la desviación estándar. • [(X -
+)^3] es el tercer momento central. - <strong>Función Generadora de
+Momentos (MGF)</strong>:<br />
+<span class="math display">\[
+  M_\epsilon(t) = \frac{e^t + e^{-t}}{2} = \cosh(t).
+  \]</span></p>
+<hr />
+</div>
+</div>
+<div id="relaciones-con-otras-distribuciones" class="section level1">
+<h1>🔗 Relaciones con otras distribuciones</h1>
+<div id="distribución-bernoulli" class="section level2">
+<h2><em>Distribución Bernoulli</em></h2>
 <ul>
-<li>Si <span class="math inline">\(k = 1\)</span>, Erlang se reduce a
-una <strong>exponencial</strong> con parámetro <span class="math inline">\(\lambda\)</span>.<br />
-</li>
-<li>Suma de <span class="math inline">\(k\)</span> exponenciales i.i.d.
-<span class="math inline">\(\sim \text{Erlang}(k,
-\lambda)\)</span>.</li>
+<li>Si <span class="math inline">\(B \sim
+\text{Bernoulli}(0.5)\)</span>, entonces puedes obtener una variable
+Rademacher así: <span class="math display">\[
+X = 2B - 1
+\]</span></li>
+<li>Ejemplo:
+<ul>
+<li>Si <span class="math inline">\(B = 1 \Rightarrow X =
++1\)</span></li>
+<li>Si <span class="math inline">\(B = 0 \Rightarrow X =
+-1\)</span></li>
 </ul></li>
 </ul>
+<p>✅ <em>Conclusión:</em> Rademacher es como una Bernoulli
+recodificada.</p>
+<hr />
+<p>##<em>Distribución Binomial (en sumas)</em></p>
+<ul>
+<li>Si tomas la *suma de muchas variables Rademacher independientes,
+obtienes una distribución parecida a una **binomial centrada* o incluso
+una <em>normal</em> si el número es grande.</li>
+</ul>
+<p>Esto se relaciona con el <em>Teorema Central del Límite</em>: <span class="math display">\[
+\frac{1}{\sqrt{n}} \sum_{i=1}^{n} X_i \rightarrow \mathcal{N}(0, 1)
+\]</span> donde <span class="math inline">\(X_i \sim
+\text{Rademacher}\)</span></p>
+<p><em>Conclusión:</em> La suma de muchas Rademacher se aproxima a una
+normal.</p>
+<p>##<em>Distribución Laplace (como combinación de Rademacher y
+Exponencial)</em></p>
+<p>Esta es más técnica pero muy interesante:</p>
+<ul>
+<li>Si <span class="math inline">\(E \sim
+\text{Exponencial}(\lambda)\)</span> y <span class="math inline">\(R
+\sim \text{Rademacher}\)</span>, entonces: <span class="math display">\[
+X = R \cdot E
+\]</span> sigue una <em>distribución de Laplace</em> (también llamada
+doble exponencial).</li>
+</ul>
+<p><em>Conclusión:</em> La distribución Laplace puede generarse como una
+<em>exponencial con signo aleatorio</em>.</p>
+<hr />
+</div>
+<div id="por-qué-es-útil-conocer-estas-relaciones" class="section level2">
+<h2>¿Por qué es útil conocer estas relaciones?</h2>
+<ul>
+<li>Ayuda a <em>entender simulaciones complejas</em> (como permutaciones
+y tests no paramétricos).</li>
+<li>Es útil para métodos computacionales como <em>machine learning,
+regularización, y análisis aleatorio</em>.</li>
+<li>Permite generar otras distribuciones a partir de <em>una fuente muy
+simple de aleatoriedad</em>: solo +1 y -1.</li>
+</ul>
+<hr />
 </div>
 <div id="ejemplo-aplicado" class="section level2">
 <h2><strong>Ejemplo Aplicado</strong></h2>
-<p><em>Problema</em>: En un centro de llamadas, las llamadas llegan a
-una tasa de <span class="math inline">\(\lambda = 0.5\)</span> por
-minuto. ¿Cuál es la probabilidad de que la 4ª llamada ocurra antes de 10
-minutos?<br />
+<p><em>Problema</em>: Si <span class="math inline">\(\epsilon_1,
+\epsilon_2\)</span> son variables de Rademacher independientes, calcule
+<span class="math inline">\(P(\epsilon_1 \cdot \epsilon_2 =
+-1)\)</span>.<br />
 <em>Solución</em>:<br />
 <span class="math display">\[
-P(X \leq 10) = F(10; 4, 0.5) = 1 - e^{-5} \left(1 + 5 + \frac{5^2}{2} +
-\frac{5^3}{6}\right) \approx 0.735.
+P(\epsilon_1 \epsilon_2 = -1) = P(\epsilon_1 = +1 \land \epsilon_2 = -1)
++ P(\epsilon_1 = -1 \land \epsilon_2 = +1) = 0.25 + 0.25 = 0.5.
 \]</span></p>
 <hr />
 </div>
@@ -1572,24 +1643,39 @@ P(X \leq 10) = F(10; 4, 0.5) = 1 - e^{-5} \left(1 + 5 + \frac{5^2}{2} +
 <div id="ejemplos-reales" class="section level2">
 <h2><strong>Ejemplos reales</strong></h2>
 <ul>
-<li><strong>Telecomunicaciones</strong>: Tiempo entre llegadas de
-paquetes en redes.<br />
+<li><strong>Aprendizaje Automático</strong>:
+<ul>
+<li><strong>Complejidad de Rademacher</strong>: Medida de capacidad de
+generalización de modelos.<br />
 </li>
-<li><strong>Fiabilidad</strong>: Tiempo hasta fallo de sistemas con
-<span class="math inline">\(k\)</span> componentes redundantes.<br />
+</ul></li>
+<li><strong>Teoría de Probabilidad</strong>:
+<ul>
+<li><strong>Desigualdad de Hoeffding</strong>: Usa Rademachers para
+acotar sumas de variables acotadas.<br />
 </li>
-<li><strong>Colas (Queueing Theory)</strong>: Modelado de tiempos de
-servicio en sistemas M/M/c. </li>
+<li><strong>Caminatas Aleatorias</strong>: Sumas de variables de
+Rademacher modelan pasos simétricos.<br />
+</li>
+</ul></li>
+<li><strong>Procesamiento de Señales</strong>:
+<ul>
+<li><strong>Proyecciones Aleatorias</strong>: Matrices con entradas de
+Rademacher en algoritmos de reducción de dimensionalidad.</li>
+</ul></li>
 </ul>
 </div>
 <div id="problema-resuelto" class="section level2">
-<h2><strong>Problema Resuelto</strong></h2>
-<p><em>Enunciado</em>: Un servidor procesa solicitudes a tasa <span class="math inline">\(\lambda = 2\)</span> por hora. Calcule la
-probabilidad de que la 3ª solicitud tarde más de 1.5 horas.<br />
+<h2><strong>Problema Resuelto</strong>:</h2>
+<p><em>Enunciado</em>: Se lanza una moneda justa 100 veces. Si “cara” =
+<span class="math inline">\(+1\)</span> y “cruz” = <span class="math inline">\(-1\)</span>, calcule la probabilidad de que la
+suma total sea <span class="math inline">\(|S_{100}| \leq
+10\)</span>.<br />
 <em>Solución</em>:<br />
+Aproximación por TCL:<br />
 <span class="math display">\[
-P(X &gt; 1.5) = 1 - F(1.5; 3, 2) = e^{-3} \left(1 + 3 +
-\frac{3^2}{2}\right) \approx 0.423.
+S_{100} \approx \mathcal{N}(0, 100), \quad P(|S_{100}| \leq 10) \approx
+P(-10 \leq Z \leq 10) \approx 0.6826.
 \]</span></p>
 <hr />
 </div>
@@ -1598,21 +1684,21 @@ P(X &gt; 1.5) = 1 - F(1.5; 3, 2) = e^{-3} \left(1 + 3 +
 <h1><strong>Simulación en R</strong></h1>
 <div id="generación-de-datos" class="section level2">
 <h2><strong>Generación de Datos</strong></h2>
-<pre class="r"><code># Simular 1000 observaciones de Erlang(k=3, λ=2)
+<pre class="r"><code># Generar 1000 variables de Rademacher
 set.seed(123)
-erlang_data &lt;- rgamma(n = 1000, shape = 3, rate = 2)
+epsilon &lt;- sample(c(-1, 1), 1000, replace = TRUE)
 
 # Media y varianza muestrales
-mean(erlang_data)   # Teórico: 3/2 = 1.5
-var(erlang_data)    # Teórico: 3/4 = 0.75</code></pre>
+mean(epsilon)  # Debe ser cercana a 0
+var(epsilon)   # Debe ser cercana a 1</code></pre>
 </div>
 <div id="visualización" class="section level2">
 <h2><strong>Visualización</strong></h2>
 <pre class="r"><code>library(ggplot2)
-ggplot(data.frame(x = erlang_data), aes(x)) +
-  geom_histogram(aes(y = ..density..), bins = 30, fill = &quot;lightblue&quot;, alpha = 0.7) +
-  stat_function(fun = dgamma, args = list(shape = 3, rate = 2), color = &quot;red&quot;, linewidth = 1) +
-  labs(title = &quot;Distribución Erlang (k=3, λ=2)&quot;, x = &quot;Tiempo&quot;, y = &quot;Densidad&quot;) +
+ggplot(data.frame(x = epsilon), aes(x)) +
+  geom_bar(width = 0.5, fill = &quot;lightblue&quot;) +
+  scale_x_continuous(breaks = c(-1, 1)) +
+  labs(title = &quot;Distribución de Rademacher&quot;, x = &quot;Valores&quot;, y = &quot;Frecuencia&quot;) +
   theme_minimal()</code></pre>
 </div>
 <div id="comparación-teoría-vs.-simulación" class="section level2">
@@ -1628,17 +1714,16 @@ ggplot(data.frame(x = erlang_data), aes(x)) +
 <tbody>
 <tr class="odd">
 <td>Media</td>
-<td><span class="math inline">\(1.5\)</span></td>
-<td><code>mean(erlang_data)</code> ≈ 1.49</td>
+<td><span class="math inline">\(0\)</span></td>
+<td><code>mean(epsilon)</code> ≈ -0.02</td>
 </tr>
 <tr class="even">
 <td>Varianza</td>
-<td><span class="math inline">\(0.75\)</span></td>
-<td><code>var(erlang_data)</code> ≈ 0.74</td>
+<td><span class="math inline">\(1\)</span></td>
+<td><code>var(epsilon)</code> ≈ 0.98</td>
 </tr>
 </tbody>
 </table>
-<hr />
 </div>
 </div>
 
