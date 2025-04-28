@@ -1,0 +1,108 @@
+---
+title: "**Distribución de Rademacher**"
+author: 
+  - GABRIEL ALEJANDRO RODRIGUEZ PULIDO  
+  - NICOL SOFIA GUERRA LASSO  
+  - JUAN SEBASTIÁN GUAYAZÁN CLAVIJO
+date: "`r Sys.Date()`"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = TRUE)
+```
+
+
+# Simulación en R
+## Establecer
+
+ Definir los valores posibles
+```{r}
+valores = c(-1, 1)
+```
+
+
+ Definir las probabilidades
+```{r}
+probabilidades = c(0.5, 0.5)
+```
+
+ Distribución acumulada
+```{r}
+acumulado = cumsum(probabilidades)
+```
+
+
+Crear un data frame
+```{r}
+tabla_rademacher = data.frame(
+  Valor = valores,
+  Probabilidad = probabilidades,
+  PbbAcumulado = acumulado
+)
+```
+
+## Mostrar la tabla
+```{r}
+print(tabla_rademacher)
+sum(tabla_rademacher$Probabilidad)
+```
+
+## Gráfica de la distribución
+```{r}
+library(ggplot2)
+ggplot(tabla_rademacher, aes(x = factor(Valor), y = Probabilidad)) +
+  geom_bar(stat = "identity", fill = "lightgreen", color = "black") +
+  labs(title = "Distribución de Rademacher",
+       x = "Valor",
+       y = "Probabilidad") +
+  theme_minimal()
+```
+
+## Propiedades 
+
+Valor Esperado
+```{r}
+E_x = sum(tabla_rademacher$Valor * tabla_rademacher$Probabilidad)
+E_x
+```
+
+Varianza
+```{r}
+Var_x = sum((tabla_rademacher$Valor - E_x)^2 * tabla_rademacher$Probabilidad)
+Var_x
+```
+
+- Forma alternativa de la varianza
+```{r}
+E_X2 = sum(tabla_rademacher$Valor^2 * tabla_rademacher$Probabilidad)
+E_X2
+Var2 = E_X2 - E_x^2
+Var2
+```
+
+Desviación Estándar
+```{r}
+sd_x = sqrt(Var_x)
+sd_x
+```
+
+# Simulación de la distribución de Rademacher
+
+## Simular 1000 lanzamientos
+```{r}
+set.seed(123)
+sim = sample(valores, 1000, prob = probabilidades, replace = TRUE)
+```
+
+## Propiedades 
+
+Media de la simulación
+```{r}
+mean(sim)
+```
+
+Desviación estándar de la simulación
+```{r}
+sd(sim)
+```

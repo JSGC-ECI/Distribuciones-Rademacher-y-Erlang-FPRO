@@ -190,5 +190,5 @@ ggplot(data.frame(x = epsilon), aes(x)) +
 ## **Comparación Teoría vs. Simulación**  
 | **Estadístico** | **Teórico** | **Simulado** |  
 |-----------------|-------------|--------------|  
-| Media          | \( 0 \)     | `mean(epsilon)` ≈ -0.02 |  
-| Varianza       | \( 1 \)     | `var(epsilon)` ≈ 0.98   |  
+| Media          | \( 0 \)     | `mean(epsilon)` |  
+| Varianza       | \( 1 \)     | `var(epsilon)`  |  

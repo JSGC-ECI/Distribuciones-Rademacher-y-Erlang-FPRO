@@ -1,0 +1,73 @@
+---
+title: "Simulación de la Distribución de Rademacher"
+author: |
+  Gabriel Alejandro Rodríguez Pulido  
+  Nicol Sofía Guerra Lasso  
+  Juan Sebastián Guayazán Clavijo
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    css: ../rany_style.css
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    code_folding: show
+  pdf_document:
+    toc: true
+    toc_depth: '3'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = TRUE)
+```
+# **Generación de Datos**
+## Número de muestras
+```{r}
+n <- 1000
+```
+
+## Generar datos de la distribución de Rademacher
+```{r}
+set.seed(123)  # Para reproducibilidad
+rademacher_data <- sample(c(-1, 1), size = n, replace = TRUE)
+```
+
+# **Visualización**
+## Ver las primeras observaciones generadas
+```{r}
+head(rademacher_data)
+```
+
+## Histograma
+```{r}
+hist(rademacher_data, breaks = 20, main = "Histograma de la Distribución de Rademacher", 
+     xlab = "Valor", ylab = "Frecuencia", col = "skyblue", border = "white")
+```
+
+## Gráfico de densidad
+```{r}
+plot(density(rademacher_data), main = "Gráfico de Densidad de la Distribución de Rademacher", 
+     xlab = "Valor", ylab = "Densidad", col = "red", lwd = 2)
+```
+
+## Media muestral
+```{r}
+mean_sim <- mean(rademacher_data)
+mean_sim
+```
+
+## Media teórica
+```{r}
+mean_theory <- 0
+```
+
+## Comparación de la media teórica con la muestral
+```{r}
+cat("Media teórica: ", mean_theory, "\n")
+cat("Media muestral: ", mean_sim, "\n")
+```
+
+## Frecuencia de los valores
+```{r}
+table(rademacher_data)
+```
