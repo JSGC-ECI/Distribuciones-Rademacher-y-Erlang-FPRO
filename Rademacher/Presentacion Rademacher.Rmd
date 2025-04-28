@@ -14,95 +14,56 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = TRUE)
 
 
 # Simulación en R
-## Establecer
-
- Definir los valores posibles
+## **Generación de Datos**
+### Número de muestras
 ```{r}
-valores = c(-1, 1)
+n <- 1000
+```
+
+### Generar datos de la distribución de Rademacher
+```{r}
+set.seed(123)  # Para reproducibilidad
+rademacher_data <- sample(c(-1, 1), size = n, replace = TRUE)
+```
+
+## **Visualización**
+### Ver las primeras observaciones generadas
+```{r}
+head(rademacher_data)
+```
+
+## Histograma
+```{r}
+hist(rademacher_data, breaks = 20, main = "Histograma de la Distribución de Rademacher", 
+     xlab = "Valor", ylab = "Frecuencia", col = "skyblue", border = "white")
 ```
 
 
- Definir las probabilidades
+## Gráfico de densidad
 ```{r}
-probabilidades = c(0.5, 0.5)
-```
-
- Distribución acumulada
-```{r}
-acumulado = cumsum(probabilidades)
+plot(density(rademacher_data), main = "Gráfico de Densidad de la Distribución de Rademacher", 
+     xlab = "Valor", ylab = "Densidad", col = "red", lwd = 2)
 ```
 
 
-Crear un data frame
+### Media muestral
 ```{r}
-tabla_rademacher = data.frame(
-  Valor = valores,
-  Probabilidad = probabilidades,
-  PbbAcumulado = acumulado
-)
+mean_sim <- mean(rademacher_data)
+mean_sim
 ```
 
-## Mostrar la tabla
+### Media teórica
 ```{r}
-print(tabla_rademacher)
-sum(tabla_rademacher$Probabilidad)
+mean_theory <- 0
 ```
 
-## Gráfica de la distribución
+## Comparación de la media teórica con la muestral
 ```{r}
-library(ggplot2)
-ggplot(tabla_rademacher, aes(x = factor(Valor), y = Probabilidad)) +
-  geom_bar(stat = "identity", fill = "lightgreen", color = "black") +
-  labs(title = "Distribución de Rademacher",
-       x = "Valor",
-       y = "Probabilidad") +
-  theme_minimal()
+cat("Media teórica: ", mean_theory, "\n")
+cat("Media muestral: ", mean_sim, "\n")
 ```
 
-## Propiedades 
-
-Valor Esperado
+## Frecuencia de los valores
 ```{r}
-E_x = sum(tabla_rademacher$Valor * tabla_rademacher$Probabilidad)
-E_x
-```
-
-Varianza
-```{r}
-Var_x = sum((tabla_rademacher$Valor - E_x)^2 * tabla_rademacher$Probabilidad)
-Var_x
-```
-
-- Forma alternativa de la varianza
-```{r}
-E_X2 = sum(tabla_rademacher$Valor^2 * tabla_rademacher$Probabilidad)
-E_X2
-Var2 = E_X2 - E_x^2
-Var2
-```
-
-Desviación Estándar
-```{r}
-sd_x = sqrt(Var_x)
-sd_x
-```
-
-# Simulación de la distribución de Rademacher
-
-## Simular 1000 lanzamientos
-```{r}
-set.seed(123)
-sim = sample(valores, 1000, prob = probabilidades, replace = TRUE)
-```
-
-## Propiedades 
-
-Media de la simulación
-```{r}
-mean(sim)
-```
-
-Desviación estándar de la simulación
-```{r}
-sd(sim)
+table(rademacher_data)
 ```
