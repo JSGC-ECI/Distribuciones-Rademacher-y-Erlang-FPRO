@@ -3,7 +3,16 @@ library(shiny)
 library(ggplot2)
 
 ui <- fluidPage(
-  titlePanel("¿Es real la diferencia? Simulación con distribución de Rademacher"),
+  titlePanel("Simulación con distribución de Rademacher"),
+  
+  fluidRow(
+    column(12,
+           h4("Enunciado"),
+           p("Un grupo de estudiantes realiza una prueba, sorpresivamente todos la aprobaron . El grupo se
+             dividio en 2; una parte que utilizo un metodo tradicional(+1) y otra que uso  un metodo alternativo(-1), se calcula el promedio
+             de ambos grupos y la diferencia sera el valor real a tener en cuenta.\n
+             Se usa una simulación rademacher para ver si la diferencia de ambos promedios significa realmente que un 
+             metodo es mejor que otro."),
   
   sidebarLayout(
     sidebarPanel(
@@ -18,6 +27,8 @@ ui <- fluidPage(
       plotOutput("histograma"),
       verbatimTextOutput("resultado")
     )
+    )
+  )
   )
 )
 
