@@ -4,8 +4,17 @@ author:
   - GABRIEL ALEJANDRO RODRIGUEZ PULIDO  
   - NICOL SOFIA GUERRA LASSO  
   - JUAN SEBASTIÁN GUAYAZÁN CLAVIJO
-date: "`r Sys.Date()`"
-output: ioslides_presentation
+date: "2025-05-02"
+output:
+  html_document:
+    css: ../rany_style.css
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    code_folding: show
+  pdf_document:
+    toc: true
+    toc_depth: '3'
 ---
 
 ```{r setup, include=FALSE}
@@ -42,13 +51,13 @@ barplot(tabla_frec,
 
 # 3. Comparación teoría vs. simulación
 
-#### Media teórica y muestral
+## Media teórica y muestral
 ```{r}
 mean_theory <- 0
 mean_sim <- mean(rademacher_data)
 ```
 
-#### Varianza teórica y muestral
+## Varianza teórica y muestral
 ```{r}
 var_theory <- 1
 var_sim <- var(rademacher_data)
