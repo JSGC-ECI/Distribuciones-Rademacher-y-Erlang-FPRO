@@ -57,15 +57,15 @@ server <- function(input, output) {
     })
     
     output$resultado <- renderText({
-      p_valor <- mean(abs(simulaciones) >= abs(diferencia_observada))
+      pbbVreal <- mean(abs(simulaciones) >= abs(diferencia_observada))
       
-      resultado <- if (p_valor < 0.05) {
+      resultado <- if (pbbVreal < 0.05) {
         "La diferencia observada es significativa: probablemente no es casual."
       } else {
-        "La diferencia observada podría explicarse por azar. No es significativa."
+        "La diferencia observada podría explicarse por azar."
       }
       
-      paste0("P-valor: ", round(p_valor, 4), "\n\n", resultado)
+      paste0("pbbVreal: ", round(pbbVreal, 5), "\n\n", resultado)
     })
   })
 }
