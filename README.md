@@ -2,9 +2,9 @@
 [Archivos](https://pruebacorreoescuelaingeduco-my.sharepoint.com/:f:/g/personal/juan_guayazan-c_mail_escuelaing_edu_co/Ej-ZDPKVbMBCr_A_KhaELmABHvCVGR6VuuuhWF0KRy1knQ?e=OBcPgn)
 
 ANA CAROLINA CABRERA BLANDON
-- [GABRIEL ALEJANDRO RODRIGUEZ PULIDO]<gabriel.rodriguez-p@mail.escuelaing.edu.co>
-- [NICOL SOFIA GUERRA LASSO]<nicol.guerra@mail.escuelaing.edu.co>
-- [JUAN SEBASTIÁN GUAYAZÁN CLAVIJO]<juan.guayazan-c@mail.escuelaing.edu.co>
+- [GABRIEL ALEJANDRO RODRIGUEZ PULIDO] <gabriel.rodriguez-p@mail.escuelaing.edu.co>
+- [NICOL SOFIA GUERRA LASSO] <nicol.guerra@mail.escuelaing.edu.co>
+- [JUAN SEBASTIÁN GUAYAZÁN CLAVIJO] <juan.guayazan-c@mail.escuelaing.edu.co>
 
 Fundamentos de probabilidad (MATE FPRO-1)     
 Coordinación Ingeniería Estadística     
