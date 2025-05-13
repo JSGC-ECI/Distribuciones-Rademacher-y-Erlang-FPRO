@@ -1,8 +1,11 @@
 # -----------------------------------------------------------
-# Simulación de la Distribución de Erlang 
+# Simulación de la Distribución de Erlang
 # -----------------------------------------------------------
 
 # Cargar librería necesaria
+if (!requireNamespace("stats", quietly = TRUE)) {
+  install.packages("stats")
+}
 library(stats)
 
 # 1. Generación de datos aleatorios
@@ -66,4 +69,3 @@ plot(n_values, means, type = "l",
 abline(h = mean_theory, col = "red", lty = 2)
 legend("topright", legend = c("Media muestral", "Media teórica"),
        col = c("darkgreen", "red"), lty = c(1, 2), bty = "n")
-

@@ -1,5 +1,5 @@
 ---
-title: "**Distribución de Rademacher**"
+title: "**Distribución de Erlang**"
 author: 
   - GABRIEL ALEJANDRO RODRIGUEZ PULIDO  
   - NICOL SOFIA GUERRA LASSO  
@@ -21,43 +21,37 @@ output:
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = TRUE)
 ```
 
-# 1. Generación de datos aleatorios
+# Simulación de la Distribución de Erlang en R
+
+
+## 1. Generación de datos aleatorios
 ```{r}
 set.seed(123)  # Para reproducibilidad
 n <- 1000  # Número de muestras
-rademacher_data <- sample(c(-1, 1), size = n, replace = TRUE)
+shape <- 2  # Parámetro de forma (k)
+rate <- 0.5  # Parámetro de tasa (λ)
+erlang_data <- rgamma(n, shape = shape, rate = rate)
 ```
 
-# 2. Visualización
+## 2. Visualización
 
-## Histograma
+### Densidad
 ```{r}
-hist(rademacher_data, breaks = seq(-1.5, 1.5, by = 1),main = "Histograma: Distribución de Rademacher", xlab = "Valores", ylab = "Frecuencia",  col = "skyblue", border = "white", xaxt = "n")
-axis(1, at = c(-1, 1))
-```
-
-## Gráfico de barras con frecuencia
-```{r}
-tabla_frec <- table(rademacher_data)
-barplot(tabla_frec,
-        main = "Frecuencia de Valores (-1, 1)",
-        col = c("tomato", "steelblue"),
-        names.arg = c("-1", "1"),
-        ylab = "Frecuencia")
+plot(density(erlang_data), main = "Densidad: Distribución de Erlang", col = "darkblue", lwd = 2)
 ```
 
 # 3. Comparación teoría vs. simulación
 
 ## Media teórica y muestral
 ```{r}
-mean_theory <- 0
-mean_sim <- mean(rademacher_data)
+mean_theory <- shape / rate
+mean_sim <- mean(erlang_data)
 ```
 
 ## Varianza teórica y muestral
 ```{r}
-var_theory <- 1
-var_sim <- var(rademacher_data)
+var_theory <- shape / (rate^2)
+var_sim <- var(erlang_data)
 ```
 
 ## Mostrar comparaciones
@@ -68,17 +62,17 @@ cat("Varianza teórica: ", var_theory, "\n")
 cat("Varianza muestral: ", var_sim, "\n")
 ```
 
-# 4. Verificación de forma con distintos tamaños de muestra
+## 4. Verificación de forma con distintos tamaños de muestra
 
-## Verificacion
+### Verificación
 ```{r}
 n_values <- seq(10, 1000, by = 10)
 means <- sapply(n_values, function(n) {
-  sim <- sample(c(-1, 1), size = n, replace = TRUE)
+  sim <- rgamma(n, shape = shape, rate = rate)
   mean(sim)
 })
+
 plot(n_values, means, type = "l", main = "Convergencia de la Media Muestral", xlab = "Tamaño de muestra", ylab = "Media", col = "darkgreen", lwd = 2)
 abline(h = mean_theory, col = "red", lty = 2)
 legend("topright", legend = c("Media muestral", "Media teórica"),
        col = c("darkgreen", "red"), lty = c(1, 2), bty = "n")
-```

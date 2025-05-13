@@ -1,0 +1,75 @@
+---
+title: "**Distribución de Erlang**"
+author: 
+  - GABRIEL ALEJANDRO RODRIGUEZ PULIDO  
+  - NICOL SOFIA GUERRA LASSO  
+  - JUAN SEBASTIÁN GUAYAZÁN CLAVIJO
+date: "`r Sys.Date()`"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = TRUE)
+```
+
+# Simulación de la Distribución de Erlang en R
+
+
+## 1. Generación de datos aleatorios
+```{r}
+set.seed(123)  # Para reproducibilidad
+n <- 1000  # Número de muestras
+shape <- 3  # Parámetro de forma (k)
+rate <- 1  # Tasa (lambda)
+erlang_data <- rgamma(n, shape = shape, rate = rate)
+```
+
+## 2. Visualización
+
+### Densidad
+```{r}
+plot(density(erlang_data), main = "Densidad: Distribución de Erlang", col = "darkblue", lwd = 2)
+```
+
+### Densidad
+```{r}
+plot(density(erlang_data), main = "Densidad Estimada vs Teórica", col = "darkgreen", lwd = 2)
+curve(dgamma(x, shape = shape, rate = rate), col = "red", lwd = 2, add = TRUE)
+legend("topright", legend = c("Simulación", "Teoría"), col = c("darkgreen", "red"), lty = 1)
+```
+
+# 3. Comparación teoría vs. simulación
+
+#### Media teórica y muestral
+```{r}
+mean_theory <- shape / rate
+mean_sim <- mean(erlang_data)
+```
+
+#### Varianza teórica y muestral
+```{r}
+var_theory <- shape / (rate^2)
+var_sim <- var(erlang_data)
+```
+
+## Mostrar comparaciones
+```{r}
+cat("Media teórica: ", mean_theory, "\n")
+cat("Media muestral: ", mean_sim, "\n")
+cat("Varianza teórica: ", var_theory, "\n")
+cat("Varianza muestral: ", var_sim, "\n")
+```
+
+## 4. Verificación de forma con distintos tamaños de muestra
+
+### Verificación
+```{r}
+n_values <- seq(10, 1000, by = 10)
+means <- sapply(n_values, function(n) {
+  sim <- rgamma(n, shape = shape, rate = rate)
+  mean(sim)
+})
+
+plot(n_values, means, type = "l", main = "Convergencia de la Media Muestral", xlab = "Tamaño de muestra", ylab = "Media", col = "darkgreen", lwd = 2)
+abline(h = mean_theory, col = "red", lty = 2)
+legend("topright", legend = c("Media muestral", "Media teórica"), col = c("darkgreen", "red"), lty = c(1, 2), bty = "n")
