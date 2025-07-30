@@ -1,6 +1,6 @@
 # 📌 Distribuciones de Rademacher y Erlang
 
-> ⚠️ Estado: **Finalizado** ✅
+> ⚠️ Estado: ***EN DESARROLLO*** Versión académica
 
 Presenta el análisis teórico y práctico de dos distribuciones de probabilidad: **Rademacher** (discreta) y **Erlang** (continua), incluyendo sus propiedades, aplicaciones, visualización, simulación en R y comparación entre teoría y datos generados aleatoriamente.
 
