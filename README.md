@@ -72,25 +72,18 @@ git clone https://github.com/JSGC-ECI/Distribuciones-Rademacher-y-Erlang-FPRO.gi
 
 ### Instalación
 
-1. Abrir `distribuciones_dashboard.Rmd` en RStudio
-2. Dar clic en **Run Document** o ejecutar directamente el entorno Shiny
+1. Abrir como proyecto en RStudio
+2. Dar clic en la distribucion deseada y ejecutar los archivos de acuerdo a su necesidad
 
 ---
 
 ## ▶️ Uso
 
 > \[!NOTE]
-> Este proyecto fue diseñado con fines académicos para ilustrar conceptos de distribuciones de probabilidad a través de teoría, ejemplos prácticos y simulaciones.
+> Incluye Control deslizante para parámetros `λ` y `k` de Erlang, muestra generada de datos de ambas distribuciones, comparación entre media teórica y muestral y gráficas interactivas
 
 > \[!WARNING]
 > Se recomienda ejecutar el `.Rmd` desde RStudio en modo `Shiny` para ver las visualizaciones interactivas correctamente.
-
-### Incluye:
-
-* Control deslizante para parámetros `λ` y `k` de Erlang
-* Muestra generada de datos de ambas distribuciones
-* Comparación entre media teórica y muestral
-* Gráficas interactivas
 
 ---
 
@@ -128,7 +121,6 @@ El enfoque de validación fue empírico a través de:
 
 ## 📌 TODOs / Funcionalidades Futuras
 
-* [ ] Agregar distribución adicional como Poisson o Normal
 * [ ] Permitir exportar gráficos como imagen desde la interfaz
 * [ ] Incluir contraste estadístico (e.g. prueba de Kolmogorov–Smirnov)
 
