@@ -135,3 +135,7 @@ El enfoque de validación fue empírico a través de:
 ![Issues abiertas](https://img.shields.io/github/issues/JSGC-ECI/Distribuciones-Rademacher-y-Erlang-FPRO?style=flat-square)
 
 ---
+
+## 📄 Licencia
+
+Este proyecto está licenciado bajo propósitos académicos y educativos. Puedes consultar el archivo [LICENSE](./LICENSE) para más información.
