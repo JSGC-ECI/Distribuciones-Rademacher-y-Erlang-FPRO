@@ -42,18 +42,15 @@ Escuela Colombiana de Ingeniería Julio Garavito
 - ✅ Gráficas de funciones de masa, densidad y distribución acumulada
 - ✅ Simulación de datos aleatorios en R con `rbinom()` y `rexp()`/`rgamma()`
 - ✅ Comparación entre teoría y simulación (medias, formas)
-- ✅ Interfaz interactiva con `flexdashboard` y `Shiny`
-- ✅ Enfoque académico para curso de Fundamentos de Probabilidad
+- ✅ Interfaz interactiva con  `Shiny`
 
 ---
 
 ## ⚙️ Tecnologías
 
 - Lenguaje: `R`
-- Herramientas: `RStudio`, `Shiny`, `flexdashboard`, `ggplot2`
+- Herramientas: `RStudio`, `Shiny`
 - Dependencias:
-  - `shiny`
-  - `flexdashboard`
   - `ggplot2`
   - `dplyr`
 
